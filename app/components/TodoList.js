@@ -15,7 +15,9 @@ export default class TodoList extends React.Component{
             todoItemText: '',
             todoListId: 0,
             todoListTitle: ''
-        }      
+        }  
+        
+        this.markDone = this.markDone.bind(this);
     }
 
     render(){
@@ -31,7 +33,7 @@ export default class TodoList extends React.Component{
        
         let items = this.state.itemArray.map((val, key) => {
             return <TodoItem key={key} keyval={key} val={val}
-            markDone={ ()=> this.markDone(key)}
+            markDone={ ()=> this.markDone(key) }
             deleteMethod={ ()=> this.deleteTodoItem(key) } />
         });
         return (
@@ -119,9 +121,6 @@ export default class TodoList extends React.Component{
         this.setState({itemArray: this.state.itemArray})
     }
 
-    updateTodoItem(key){
-
-    }
 
     markDoneRequest(todoId, todoItemId) {
         const axios = require('axios').default;
@@ -141,20 +140,7 @@ export default class TodoList extends React.Component{
 
     markDone(key){
         this.markDoneRequest(String(this.state.itemArray[key]["todoId"]), String(this.state.itemArray[key]["id"]))
-
-        //this.state.done = true;
-
-       // console.log(this.state.done)
-        //this.forceUpdate()
-        //odoItem.state.done = true;
-        // this.state.itemArray.splice(key, 1);
-        //this.setState({itemArray: this.state.itemArray})
     }
-
-    
-
-    
-
 }
 
 const styles = StyleSheet.create({

@@ -7,15 +7,24 @@ export default class TodoItem extends React.Component{
         super(props);
         this.state = {
             done: this.props.val.complete,
+            
             doneText: "Not Done"
         }      
-    }
 
-    render(){
-        
         if(this.state.done){
             this.state.doneText = "Done";
         }
+    }
+    changeTextToDone = () => {
+        this.setState({
+            doneText: 'Done'
+        });
+        this.props.markDone
+      }
+
+   
+
+    render(){
        
         return (
           
@@ -24,7 +33,7 @@ export default class TodoItem extends React.Component{
                     <Text style={styles.todoItemText}>{this.props.val.content}</Text>
 
 
-                    <TouchableOpacity onPress={this.props.markDone} style={styles.viewList}>
+                    <TouchableOpacity onPress={this.changeTextToDone} onPressIn={this.props.markDone} style={styles.viewList}>
                         <Text style={styles.markDoneText}> 
                             {this.state.doneText}
                         </Text>
@@ -37,6 +46,9 @@ export default class TodoItem extends React.Component{
          
           );
     }
+
+
+
 
     
 }

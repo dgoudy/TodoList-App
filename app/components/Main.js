@@ -22,6 +22,9 @@ export default class Main extends React.Component{
         this.apiCall();
     }
     
+    componentDidUpdate(){
+        console.log("UPDATED!")
+    }
     async apiCall()
     {
         
@@ -95,7 +98,7 @@ export default class Main extends React.Component{
               })
               .then(function (response) {
                 console.log(response);
-              
+ 
               })
               .catch(function (error) {
                 console.log(error);
